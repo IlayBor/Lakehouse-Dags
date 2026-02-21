@@ -49,7 +49,7 @@ with DAG(
             "model": GameDeal,
             "folder_path": "warehouse/raw/cheapshark_data",
             "table_identifier": "staging.cheapshark_data",
-            "primary_key": ["steamAppID", "internalName", "ingestionDate"]
+            "primary_key": ["dealID", "ingestionDate"]
         },
     )
 
