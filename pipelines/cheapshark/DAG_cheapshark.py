@@ -37,9 +37,9 @@ with DAG(
         task_id="load_json_deals",
         python_callable=load_cheapshark_pages,
         op_kwargs={
-                    "start_page": 0, 
-                    # "end_page": 5
-                   },
+            "start_page": 0,
+            # "end_page": 5
+        },
     )
 
     load_to_iceberg = PythonOperator(
@@ -49,7 +49,7 @@ with DAG(
             "model": GameDeal,
             "folder_path": "warehouse/raw/cheapshark_data",
             "table_identifier": "staging.cheapshark_data",
-            "primary_key": ["dealID", "ingestionDate"]
+            "primary_key": ["dealID", "ingestionDate"],
         },
     )
 
@@ -57,7 +57,7 @@ with DAG(
         group_id="dbt_transform",
         project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
         profile_config=profile_config,
-        render_config=RenderConfig(select=["+int_games_to_fetch"]),
+        render_config=RenderConfig(select=["+stg_cheapshark_api__game_deals"]),
         operator_args={"install_deps": True},
     )
 
