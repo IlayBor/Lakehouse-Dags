@@ -1,0 +1,11 @@
+lakehouse_profile: 
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: ilaybor
+      host: trino
+      port: 8080
+      catalog: iceberg
+      schema: staging
