@@ -8,7 +8,7 @@ from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
 
 # from pipelines.common.connections import profile_config, DEFAULT_DBT_ROOT_PATH
-from pipelines.common.transform import upsert_iceberg_table
+from pipelines.common import upsert_iceberg_table
 from pipelines.steam.ingestion import load_missing_games
 from pipelines.steam.model import SteamGame
 
