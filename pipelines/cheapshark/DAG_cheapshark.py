@@ -8,7 +8,7 @@ from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
 
 # from pipelines.common.connections import profile_config, DEFAULT_DBT_ROOT_PATH
-from common.transform import upsert_iceberg_table
+from pipelines.common.transform import upsert_iceberg_table
 from cheapshark.ingestion import load_cheapshark_pages
 from cheapshark.model import GameDeal
 
