@@ -7,7 +7,7 @@ from cosmos import ProfileConfig
 from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
 
-from ..common import upsert_iceberg_table
+from pipelines.common import upsert_iceberg_table
 from .ingestion import load_cheapshark_pages
 from .model import GameDeal
  
