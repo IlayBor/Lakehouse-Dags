@@ -8,8 +8,8 @@ from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
 
 from pipelines.common import upsert_iceberg_table
-from .ingestion import load_cheapshark_pages
-from .model import GameDeal
+from ingestion import load_cheapshark_pages
+from model import GameDeal
  
 DEFAULT_DBT_ROOT_PATH = Path(__file__).parent.parent.parent / "dbt_project"
 profile_config = ProfileConfig(
