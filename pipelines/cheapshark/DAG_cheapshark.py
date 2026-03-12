@@ -7,11 +7,10 @@ from cosmos import ProfileConfig
 from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
 
-# from pipelines.common.connections import profile_config, DEFAULT_DBT_ROOT_PATH
-from pipelines.common.transform import upsert_iceberg_table
-from cheapshark.ingestion import load_cheapshark_pages
-from cheapshark.model import GameDeal
-
+from pipelines.common import upsert_iceberg_table
+from .ingestion import load_cheapshark_pages
+from .model import GameDeal
+ 
 DEFAULT_DBT_ROOT_PATH = Path(__file__).parent.parent.parent / "dbt_project"
 profile_config = ProfileConfig(
     profile_name="lakehouse_profile",
