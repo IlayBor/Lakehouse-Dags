@@ -5,7 +5,7 @@ import pyiceberg.catalog.rest
 # from cosmos.profiles.trino import TrinoBaseProfileMapping
 # from pathlib import Path
 
-host = "10.0.0.97"
+host = "10.0.0.96"
 
 catalog = pyiceberg.catalog.rest.RestCatalog(
     name="catalog_name",
