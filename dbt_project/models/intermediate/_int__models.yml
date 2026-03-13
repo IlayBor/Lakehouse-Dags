@@ -8,3 +8,4 @@ models:
     columns:
       - name: steam_app_id
         description: "Unique identifier for the game on the Steam platform. Used to fetch game details from the Steam API."
+ 
