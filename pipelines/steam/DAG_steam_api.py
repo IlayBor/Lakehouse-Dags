@@ -33,8 +33,8 @@ with DAG(
     catchup=False,
     tags=["steam-etl"],
 ) as dag:
-    dbt_create_missing_games_table = DbtRunLocalOperator(
-        task_id="dbt_create_missing_games_table",
+    dbt_create_missing_games_table = DbtTaskGroup(
+        group_id="dbt_create_missing_games_table",
         project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
         profile_config=profile_config,
         render_config=RenderConfig(select=["+stg_steam_api__games_details"]),
