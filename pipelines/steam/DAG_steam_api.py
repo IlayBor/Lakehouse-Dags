@@ -2,7 +2,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.providers.standard.operators.python import PythonOperator
 
-from cosmos import DbtTaskGroup, ProjectConfig, RenderConfig
+from cosmos import DbtTaskGroup, ProjectConfig, DbtRunLocalOperator, RenderConfig
 from cosmos import ProfileConfig
 from cosmos.profiles.trino import TrinoBaseProfileMapping
 from pathlib import Path
@@ -33,6 +33,14 @@ with DAG(
     catchup=False,
     tags=["steam-etl"],
 ) as dag:
+    dbt_create_missing_games_table = DbtRunLocalOperator(
+        task_id="dbt_create_missing_games_table",
+        project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
+        profile_config=profile_config,
+        render_config=RenderConfig(select=["+stg_steam_api__games_details"]),
+        operator_args={"install_deps": True},
+    )
+    
     get_missing_games = PythonOperator(
         task_id="get_missing_games",
         python_callable=load_missing_games,
@@ -60,4 +68,4 @@ with DAG(
         operator_args={"install_deps": True},
     )
 
-    get_missing_games >> load_to_iceberg >> dbt_modelling
+    dbt_create_missing_games_table >> get_missing_games >> load_to_iceberg >> dbt_modelling
