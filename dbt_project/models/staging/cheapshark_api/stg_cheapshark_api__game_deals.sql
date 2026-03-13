@@ -8,7 +8,7 @@ renamed as (
         dealid as deal_id,
         storeid as store_id,
         gameid as game_id,
-        steamappid as steam_app_id,
+        CAST(steamappid AS VARCHAR) as steam_app_id,
 
         -- strings
         internalname as internal_name,
@@ -32,7 +32,7 @@ renamed as (
         -- dates
         CAST(from_unixtime(releasedate) AS date) AS release_date,
         CAST(from_unixtime(lastchange) AS date) AS last_change_date,
-        ingestiondate as ingestion_date
+        CAST(ingestiondate AS date) AS ingestion_date
 
     from source
 )
