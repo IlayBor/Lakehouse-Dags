@@ -11,7 +11,7 @@ catalog = pyiceberg.catalog.rest.RestCatalog(
 )
 
 s3fs = S3FileSystem(
-    endpoint_url=f"http://{host}:9000",
+    endpoint_url=f"http://{host}:6000",
     key="ilaybor",
     secret="24342434",
 )
