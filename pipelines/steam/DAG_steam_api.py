@@ -33,12 +33,12 @@ with DAG(
     catchup=False,
     tags=["steam-etl"],
 ) as dag:
-    dbt_create_missing_games_table = DbtTaskGroup(
-        group_id="dbt_create_missing_games_table",
-        project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
+    dbt_create_missing_games_table = DbtRunLocalOperator(
+        task_id="dbt_create_missing_games_table",
+        project_dir=DEFAULT_DBT_ROOT_PATH,
         profile_config=profile_config,
-        render_config=RenderConfig(select=["+int_games_to_fetch"]),
-        operator_args={"install_deps": True},
+        select=["int_games_to_fetch"],
+        install_deps=True,
     )
     
     get_missing_games = PythonOperator(
@@ -64,7 +64,7 @@ with DAG(
         group_id="dbt_transform",
         project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
         profile_config=profile_config,
-        render_config=RenderConfig(select=["+stg_steam_api__games_details"]),
+        render_config=RenderConfig(select=["stg_steam_api__games_details"]),
         operator_args={"install_deps": True},
     )
 
