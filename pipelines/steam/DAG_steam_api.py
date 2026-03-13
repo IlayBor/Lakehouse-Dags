@@ -37,7 +37,7 @@ with DAG(
         group_id="dbt_create_missing_games_table",
         project_config=ProjectConfig(DEFAULT_DBT_ROOT_PATH),
         profile_config=profile_config,
-        render_config=RenderConfig(select=["+stg_steam_api__games_details"]),
+        render_config=RenderConfig(select=["+int_games_to_fetch"]),
         operator_args={"install_deps": True},
     )
     
