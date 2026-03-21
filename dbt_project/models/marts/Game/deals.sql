@@ -18,6 +18,7 @@ select
 	steam_details."is_available_on_windows",
 	steam_details."is_available_on_mac",
 	steam_details."is_available_on_linux",
-	steam_details."release_date"
+	steam_details."release_date",
+	cheapshark."ingestion_date"
 from {{ ref("stg_cheapshark_api__game_deals") }} cheapshark 
 inner join {{ ref("stg_steam_api__games_details") }} steam_details on (cheapshark."steam_app_id" = steam_details."steam_app_id")
